@@ -19,7 +19,6 @@ namespace ConsoleApp1
 
             userService data = new userService(email, password);
             data.login();
-            data.Record();
 
             Console.ReadKey();
         }

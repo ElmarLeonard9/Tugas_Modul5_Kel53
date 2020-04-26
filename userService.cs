@@ -32,21 +32,14 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("\nWelcome " + role);
                 Console.WriteLine("Logged it as user email: " + email);
+                Console.WriteLine("\n" + email);
+                Console.WriteLine("" + book1);
+                Console.WriteLine("" + book2);
+                Console.WriteLine("Tanggal Pinjaman : " + date);
             }
             else
             {
                 Console.WriteLine("\nInvalid Login");
-            }
-        }
-        public void Record()
-        {
-            var (status, book1) = checkRecord();
-            if (status == true)
-            {
-                Console.WriteLine("\n"+ email ,"Meminjam buku ");
-                Console.WriteLine("" + book1);
-                Console.WriteLine("" + book2);
-                Console.WriteLine("Tanggal peminjaman : " + date);
             }
         }
         private (bool, string) checkCredentials()
@@ -55,25 +48,14 @@ namespace ConsoleApp1
             {
                 if (data[i, 0] == email && data[i, 1] == password)
                 {
+                    book1 = histories[i, 1];
+                    book2 = histories[i, 2];
+                    date  = histories[i, 3];
                     roles = data[i, 2];
                     return (true, roles);
                 }
             }
             return (false, roles);
-        }
-        private (bool, string) checkRecord()
-        {
-            for (int a = 0; a < histories.GetLength(0); a++)
-            {
-                if (histories[a, 0] == email)
-                {
-                    book1 = histories[a, 1];
-                    book2 = histories[a, 2];
-                    date = histories[a, 3];
-                    return (true, book1);
-                }
-            }
-            return (false, book1);
         }
     }
 }
